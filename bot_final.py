@@ -1,10 +1,10 @@
+import os
 import discord
 from discord.ext import commands
 from discord import app_commands
 
-TOKEN = "MTUxMDEwNTcxMDkwNDQ3NTY4OQ.Gn7Nun.h7n5CFPTfmWGVRKhHjjZZ1pOpBvXPnqRMPoTbI"
+TOKEN = os.environ.get("TOKEN", "MTUxMDEwNTcxMDkwNDQ3NTY4OQ.Gn7Nun.h7n5CFPTfmWGVRKhHjjZZ1pOpBvXPnqRMPoTbI")
 
-# 🔥 TERI DISCORD ID (already daal di)
 OWNER_ID = 1203610575381205033
 
 intents = discord.Intents.default()
@@ -92,7 +92,6 @@ async def show_commands(ctx):
 
 @bot.command(name='sync')
 async def sync_commands(ctx):
-    """Sync slash commands - sirf owner use kar sakta hai"""
     if ctx.author.id != OWNER_ID:
         await ctx.send("❌ Only bot owner can use this command!")
         return
@@ -103,7 +102,6 @@ async def sync_commands(ctx):
     except Exception as e:
         await ctx.send(f"❌ Error: {e}")
 
-# ============== BOT READY ==============
 @bot.event
 async def on_ready():
     print(f'✅ {bot.user} is online!')
